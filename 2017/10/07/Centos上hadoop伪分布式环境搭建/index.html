@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ThinkingSite" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="准备工作虽然不是第一次使用linux,但上次使用命令行也是很早之前了。所以，对于初次在linux上安装开发环境的，建议先去了解一些基础，虽然可以不会哪里查哪里，但是我觉得系统的大概了解一下自己接下来的工作比什么不知道要好很多。就像提前预习功课一样。 需要准备 centos 系统 java jdk hadoop 对vim 进行了解 了解linux常用命令  了解Linux命令可以去Linux教程先去">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos上hadoop伪分布式环境搭建">
+<meta property="og:url" content="http://aolish333.github.io/2017/10/07/Centos上hadoop伪分布式环境搭建/index.html">
+<meta property="og:site_name" content="ThinkingSite">
+<meta property="og:description" content="准备工作虽然不是第一次使用linux,但上次使用命令行也是很早之前了。所以，对于初次在linux上安装开发环境的，建议先去了解一些基础，虽然可以不会哪里查哪里，但是我觉得系统的大概了解一下自己接下来的工作比什么不知道要好很多。就像提前预习功课一样。 需要准备 centos 系统 java jdk hadoop 对vim 进行了解 了解linux常用命令  了解Linux命令可以去Linux教程先去">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/qib73X8.png">
+<meta property="og:image" content="https://i.imgur.com/xwO62gK.png">
+<meta property="og:updated_time" content="2017-10-08T11:11:28.967Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos上hadoop伪分布式环境搭建">
+<meta name="twitter:description" content="准备工作虽然不是第一次使用linux,但上次使用命令行也是很早之前了。所以，对于初次在linux上安装开发环境的，建议先去了解一些基础，虽然可以不会哪里查哪里，但是我觉得系统的大概了解一下自己接下来的工作比什么不知道要好很多。就像提前预习功课一样。 需要准备 centos 系统 java jdk hadoop 对vim 进行了解 了解linux常用命令  了解Linux命令可以去Linux教程先去">
+<meta name="twitter:image" content="https://i.imgur.com/qib73X8.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://aolish333.github.io/2017/10/07/Centos上hadoop伪分布式环境搭建/"/>
+
+
+
+
+
+  <title>Centos上hadoop伪分布式环境搭建 | ThinkingSite</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107511913-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e533eedecde62fe60e12cb3c44680335";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ThinkingSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'bpPM7F26iHJqD7SWK-NQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://aolish333.github.io/2017/10/07/Centos上hadoop伪分布式环境搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThinkingSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Centos上hadoop伪分布式环境搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T17:25:25+08:00">
+                2017-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>虽然不是第一次使用linux,但上次使用命令行也是很早之前了。所以，对于初次在linux上安装开发环境的，建议先去了解一些基础，虽然可以不会哪里查哪里，但是我觉得系统的大概了解一下自己接下来的工作比什么不知道要好很多。就像提前预习功课一样。</p>
+<h2 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h2><ol>
+<li>centos 系统</li>
+<li>java jdk</li>
+<li>hadoop</li>
+<li>对vim 进行了解</li>
+<li>了解linux常用命令</li>
+</ol>
+<p>了解Linux命令可以去<a href="http://www.runoob.com/linux/linux-command-manual.html" target="_blank" rel="external">Linux教程</a>先去有个大概的了解。</p>
+<h1 id="安装JAVA-JDK"><a href="#安装JAVA-JDK" class="headerlink" title="安装JAVA JDK"></a>安装JAVA JDK</h1><p>删除自带jdk,参见参考文献。</p>
+<h2 id="可能会用到的命令"><a href="#可能会用到的命令" class="headerlink" title="可能会用到的命令"></a>可能会用到的命令</h2><pre><code>mkdir
+rm
+pwd 查看当前路径
+mv 
+wget
+ls -lht 查看文件大小
+tar -xzvf jdk-8u144-linux-x64.tar.gz
+</code></pre><h2 id="新建java文件"><a href="#新建java文件" class="headerlink" title="新建java文件"></a>新建java文件</h2><pre><code>mkdir java
+</code></pre><p>进入<br>    cd java</p>
+<h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><pre><code>wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; 
+http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz
+</code></pre><p>解压文件</p>
+<pre><code>tar -zxvf jdk-8u144-linux-x64.tar.gz
+</code></pre><h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>打开/etc/profile文件</p>
+<pre><code>vim /etc/profile
+</code></pre><p>在文件末尾插入如下内容</p>
+<pre><code>export JAVA_HOME=/java/jdk1.8.0_144
+export JRE_HOME=${JAVA_HOME}/jre
+</code></pre><p>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
+<p>执行profile</p>
+<pre><code>source /etc/profile
+</code></pre><h2 id="判断是否安装成功"><a href="#判断是否安装成功" class="headerlink" title="判断是否安装成功"></a>判断是否安装成功</h2><pre><code>javac
+</code></pre><h1 id="安装hadoop"><a href="#安装hadoop" class="headerlink" title="安装hadoop"></a>安装hadoop</h1><p>你可以从<a href="http://hadoop.apache.org/releases.html#04+August,+2017:+Release+2.7.4+available" target="_blank" rel="external">官网去下载hdoop</a>,也可以使用一下链接。</p>
+<h2 id="新建hadoop"><a href="#新建hadoop" class="headerlink" title="新建hadoop"></a>新建hadoop</h2><pre><code>mkdir hadoop
+</code></pre><h2 id="下载hadoop-2-8-1-tar-gz"><a href="#下载hadoop-2-8-1-tar-gz" class="headerlink" title="下载hadoop-2.8.1.tar.gz"></a>下载hadoop-2.8.1.tar.gz</h2><pre><code>wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; 
+http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.8.1/hadoop-2.8.1.tar.gz 
+</code></pre><h2 id="解压文件："><a href="#解压文件：" class="headerlink" title="解压文件："></a>解压文件：</h2><pre><code>tar -zxvf hadoop-2.8.1.tar.gz
+</code></pre><h2 id="删除安装包："><a href="#删除安装包：" class="headerlink" title="删除安装包："></a>删除安装包：</h2><pre><code>rm –rf hadoop-2.8.1.tar.gz
+</code></pre><h2 id="修改名称"><a href="#修改名称" class="headerlink" title="修改名称"></a>修改名称</h2><pre><code>mv hadoop-2.8.1 hadoop
+</code></pre><h2 id="创建tmp文件夹"><a href="#创建tmp文件夹" class="headerlink" title="创建tmp文件夹"></a>创建tmp文件夹</h2><pre><code>cd hadoop
+mkdir temp
+</code></pre><h2 id="配置环境变量-1"><a href="#配置环境变量-1" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre><code>export HADOOP_INSTALL=/hadoop/hadoop  
+export PATH=${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin${PATH}  
+export HADOOP_MAPRED_HOME=${HADOOP_INSTALL}  
+export HADOOP_COMMON_HOME=${HADOOP_INSTALL}  
+export HADOOP_HDFS_HOME=${HADOOP_INSTALL}  
+export YARN_HOME=${HADOOP_INSTALLL}  
+export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/natvie    
+export HADOOP_OPTS=&quot;-Djava.library.path=${HADOOP_INSTALL}/lib:${HADOOP_INSTALL}/lib/native&quot; 
+</code></pre><h2 id="创建hadoop用户"><a href="#创建hadoop用户" class="headerlink" title="创建hadoop用户"></a>创建hadoop用户</h2><p>创建hadoop用户的目的是为了在启动hadoop 时不用过多了去输入用户名密码。</p>
+<p>对于不了解Linux用户和用户管理命令，可以访问<a href="http://www.runoob.com/linux/linux-user-manage.html" target="_blank" rel="external">Linux 用户和用户组管理</a>先去熟悉。</p>
+<pre><code>/添加用户：
+</code></pre><p>进入vim编辑界面，输入i进入插入模式。<br>下拉之下图所示：<br><img src="https://i.imgur.com/qib73X8.png" alt="插入用户"></p>
+<h2 id="设置hadoop-env-sh中的java环境变量"><a href="#设置hadoop-env-sh中的java环境变量" class="headerlink" title="设置hadoop-env.sh中的java环境变量"></a>设置hadoop-env.sh中的java环境变量</h2><pre><code>export JAVA_HOME= {环境变量} 
+</code></pre><p><em>注意：此处的环境变参照hdfs-site.xml中的其他环境变量配置</em></p>
+<h2 id="配置其他文件"><a href="#配置其他文件" class="headerlink" title="配置其他文件"></a>配置其他文件</h2><p>伪分布式需要修改2个配置文件 core-site.xml 和 hdfs-site.xml 。</p>
+<p>配置core-site.xml</p>
+<pre><code>vim ./etc/hadoop/core-site.xml
+
+&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+        &lt;value&gt;file:/usr/local/hadoop/tmp&lt;/value&gt;
+        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;
+    &lt;/property&gt;
+     &lt;property&gt;
+         &lt;name&gt;fs.defaultFS&lt;/name&gt;
+         &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+     &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>配置hdfs-site.xml</p>
+<pre><code>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.replication&lt;/name&gt;
+        &lt;value&gt;1&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+         &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+         &lt;value&gt;file:/usr/local/hadoop/tmp/dfs/name&lt;/value&gt;
+      &lt;/property&gt;
+     &lt;property&gt;
+        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+        &lt;value&gt;file:/usr/local/hadoop/tmp/dfs/data&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><h2 id="检测是否安装成功"><a href="#检测是否安装成功" class="headerlink" title="检测是否安装成功"></a>检测是否安装成功</h2><pre><code>./bin/hdfs namenode -format
+</code></pre><p>如果显示 exiting with status 1 说明配置文件可能存在错误，上面会给提示，对应的去排除错误就好。<br>如果显示 exiting with status 0 则说明安装没有问题，继续执行下一步。</p>
+<p><img src="https://i.imgur.com/xwO62gK.png" alt="配置成功"></p>
+<pre><code>./sbin/start-dfs.sh
+</code></pre><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="http://www.cnblogs.com/laov/p/3541414.html" target="_blank" rel="external">Linux中常用操作命令    </a></p>
+<p><a href="http://blog.csdn.net/circyo/article/details/46724335" target="_blank" rel="external"> CentOs7安装Hadoop2.7.0总结</a></p>
+<p><a href="http://www.cnblogs.com/sprinng/p/4102565.html" target="_blank" rel="external">删除自带openjdk</a></p>
+<p><a href="http://jingyan.baidu.com/article/4853e1e51d0c101909f72607.html" target="_blank" rel="external">在CentOS上安装Java环境：[1]使用yum安装java</a></p>
+<p><a href="http://www.powerxing.com/install-hadoop-in-centos/" target="_blank" rel="external">Hadoop安装教程_单机/伪分布式配置_CentOS6.4/Hadoop2.6.0</a></p>
+<p><a href="http://www.centoscn.com/hadoop/2015/0118/4525.html" target="_blank" rel="external">CentOS 6.5 配置hadoop 2.6.0伪分布式</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_lee.png" alt="Lee WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay_lee.jpg" alt="Lee Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/05/Git基础操作-一/" rel="next" title="Git基础操作(一)">
+                <i class="fa fa-chevron-left"></i> Git基础操作(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTE4NS83NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Lee" />
+          <p class="site-author-name" itemprop="name">Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">一切的关键在于必须承认一加一等于二；弄明白了这一点，其他一切全会迎刃而解。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="aolish333@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/aolish333" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-mou-11-67/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需要准备"><span class="nav-number">1.1.</span> <span class="nav-text">需要准备</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装JAVA-JDK"><span class="nav-number">2.</span> <span class="nav-text">安装JAVA JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可能会用到的命令"><span class="nav-number">2.1.</span> <span class="nav-text">可能会用到的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建java文件"><span class="nav-number">2.2.</span> <span class="nav-text">新建java文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载jdk"><span class="nav-number">2.3.</span> <span class="nav-text">下载jdk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量"><span class="nav-number">2.4.</span> <span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否安装成功"><span class="nav-number">2.5.</span> <span class="nav-text">判断是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装hadoop"><span class="nav-number">3.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建hadoop"><span class="nav-number">3.1.</span> <span class="nav-text">新建hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载hadoop-2-8-1-tar-gz"><span class="nav-number">3.2.</span> <span class="nav-text">下载hadoop-2.8.1.tar.gz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解压文件："><span class="nav-number">3.3.</span> <span class="nav-text">解压文件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除安装包："><span class="nav-number">3.4.</span> <span class="nav-text">删除安装包：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改名称"><span class="nav-number">3.5.</span> <span class="nav-text">修改名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建tmp文件夹"><span class="nav-number">3.6.</span> <span class="nav-text">创建tmp文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量-1"><span class="nav-number">3.7.</span> <span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建hadoop用户"><span class="nav-number">3.8.</span> <span class="nav-text">创建hadoop用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置hadoop-env-sh中的java环境变量"><span class="nav-number">3.9.</span> <span class="nav-text">设置hadoop-env.sh中的java环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置其他文件"><span class="nav-number">3.10.</span> <span class="nav-text">配置其他文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测是否安装成功"><span class="nav-number">3.11.</span> <span class="nav-text">检测是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lee</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
