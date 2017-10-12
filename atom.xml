@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2017-10-12T10:32:44.507Z</updated>
+  <updated>2017-10-12T10:34:07.776Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://aolish333.github.io/2017/10/09/LaTex-%E5%85%A5%E9%97%A8/"/>
     <id>http://aolish333.github.io/2017/10/09/LaTex-入门/</id>
     <published>2017-10-09T07:37:48.000Z</published>
-    <updated>2017-10-12T10:32:44.507Z</updated>
+    <updated>2017-10-12T10:34:07.776Z</updated>
     
     <content type="html"><![CDATA[<h1 id="入门感悟"><a href="#入门感悟" class="headerlink" title="入门感悟"></a>入门感悟</h1><p>由于之前有对Latex有过大概的了解，计参加美赛，所以就想将LaTex系统的学习一下。<br>关于入门我觉得<a href="https://github.com/louisstuart96/lshort-new-zh-cn/blob/master/lshort-zh-cn.pdf" target="_blank" rel="external">《一份不太简短的 L ATEX2ε 介绍》</a>比较适合入门。可以与<a href="https://book.douban.com/subject/24703731/" target="_blank" rel="external">《LaTeX入门》</a>结合使用。你还可以参照书籍链接中的配套 TeX 源码进行学习。<br>其实，你只要把《一份不太简短的 L ATEX2ε 介绍》看上一两遍，再结合你要书写的模板从头到尾，排上两三次版配合Google或百度DeBug，基本上就算入门了。</p><p><strong>书籍的下载你可以去<a href="https://www.jiumodiary.com/" target="_blank" rel="external">鵚鸠搜索</a>搜索书名去下载。</strong></p><h2 id="Ctex下载"><a href="#Ctex下载" class="headerlink" title="Ctex下载"></a>Ctex下载</h2><p>你可可以去<a href="https://mirrors.tuna.tsinghua.edu.cn/ctex/legacy/2.9/" target="_blank" rel="external">清华大学开源软件镜像站</a>进行下载，建议新手下载__Full.exe版本,可以避免宏包的安装。</p><h2 id="编译器的选择"><a href="#编译器的选择" class="headerlink" title="编译器的选择"></a>编译器的选择</h2><p>根据一篇LATEX常用编辑器及使用建议，作者@latexstudio@qq.com的分类。</p><p>###编译器分为四类：</p><ul><li><p>第一类，通用类编辑器：不带扩展和带有扩展。</p><ul><li>不带扩展 记事本（notepad），notepad++，EditPlus等 </li><li>带有扩展 SublimeText(LaTeXTools),Vim(LaTeX-Box),Emacs(AUCTeX)等</li></ul></li><li><p>第二类，专用的编辑器，如WinEdt（收费）,TeXworks,TeXmaker,TeXshop等</p></li><li>第三类，可视化编辑器：如LyX,ScientiﬁcWorkplace(SWP),BakomaTEXWord等。 </li><li>第四类，在线编辑器：ShareLaTeX,Overleaf等。</li></ul><h3 id="安装链接"><a href="#安装链接" class="headerlink" title="安装链接"></a>安装链接</h3><ol><li>winedt(ctex自带)</li><li>使用Sublime Text编写LaTeX,参考参考文献3，4进行安装。</li><li><a href="http://texstudio.sourceforge.net/" target="_blank" rel="external">TeXstudio</a></li></ol><h2 id="书籍链接"><a href="#书籍链接" class="headerlink" title="书籍链接"></a>书籍链接</h2><ol><li><p><a href="http://tangzx.qiniudn.com/post-0061-liuhaiyang-example-code.html" target="_blank" rel="external">LaTeX 入门（刘海洋） — 配套 TeX 源码</a></p></li><li><p><a href="https://book.douban.com/subject/1418356/" target="_blank" rel="external">The LaTeX Companion (2nd Edition)</a></p></li></ol><h2 id="论坛"><a href="#论坛" class="headerlink" title="论坛"></a>论坛</h2><ol><li><p><a href="http://www.latexstudio.net/" target="_blank" rel="external">Latex论坛小木屋</a></p></li><li><p><a href="http://bbs.ctex.org/forum.php" target="_blank" rel="external">Ctex社区</a></p></li></ol><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol><li><a href="https://www.zhihu.com/topic#LaTeX" target="_blank" rel="external">知乎Latex话题</a></li><li><a href="https://www.zhihu.com/question/36038602" target="_blank" rel="external">如何配置 Sublime Text 的 LaTeXTools？</a></li><li><a href="http://blog.csdn.net/qazxswed807/article/details/51234834" target="_blank" rel="external">基于TeXlive,使用Sublime Text 3编写LaTeX</a></li><li><a href="https://www.zhihu.com/question/36038602?sort=created" target="_blank" rel="external">如何配置 Sublime Text 的 LaTeXTools？</a></li></ol>]]></content>
     
@@ -35,7 +35,7 @@
     </summary>
     
     
-      <category term="LaTex，排版" scheme="http://aolish333.github.io/tags/LaTex%EF%BC%8C%E6%8E%92%E7%89%88/"/>
+      <category term="LaTex" scheme="http://aolish333.github.io/tags/LaTex/"/>
     
   </entry>
   
