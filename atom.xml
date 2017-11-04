@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2017-10-24T08:24:34.334Z</updated>
+  <updated>2017-11-04T03:23:00.650Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>POJ1094</title>
+    <link href="http://aolish333.github.io/2017/11/03/POJ1094/"/>
+    <id>http://aolish333.github.io/2017/11/03/POJ1094/</id>
+    <published>2017-11-03T08:20:44.000Z</published>
+    <updated>2017-11-04T03:23:00.650Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>题目链接：<a href="http://poj.org/problem?id=1094" target="_blank" rel="external">http://poj.org/problem?id=1094</a></p><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>不同值的上升排序顺序是使用某种形式的小于运算符来排序从最小到最小的元素。 例如，排序的序列A，B，C，D意味着A &lt; B，B &lt; C和C &lt; D.在这个问题中，我们将给你一套 A &lt; B 形式的关系，并要求你确定是否指定了排序顺序。</p><h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>输入由多个问题实例组成。 每个实例从包含两个正整数n和m的行开始。 第一个值指示要排序的对象的数量，其中2 &lt; =  n &lt;= 26。要排序的对象将是大写字母表的前n个字符。 第二个值m表示在这个问题实例中给出的形式 A &lt; B 的关系的数量。<br>接下来将是m行，每个包含一个这样的关系由三个字符组成：大写字母，字符“&lt;”和第二个大写字母。 字母不得超出字母表前n个字母的范围。 n = m = 0的值表示输入结束。</p><h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>对于每个问题实例，输出由一行组成。可能是以下三种情形之一：</p><ol><li>该字母序列有序，并依次输出;</li><li>排序顺序无法确定;</li><li>输入关系后发现不一致。</li></ol><h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><pre><code>4 6A&lt;BA&lt;CB&lt;CC&lt;DB&lt;DA&lt;B3 2A&lt;BB&lt;A26 1A&lt;Z0 0</code></pre><h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><pre><code>Sorted sequence determined after 4 relations: ABCD.Inconsistency found after 2 relations.Sorted sequence cannot be determined.</code></pre><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>代码出自参考文献[<a href="http://www.cnblogs.com/yueshuqiao/archive/2011/08/16/2140485.html" target="_blank" rel="external">1</a>]。</p><pre><code>#include&lt;stdio.h&gt;#include&lt;string.h&gt;int map[27][27],indegree[27],q[27];int TopoSort(int n) //拓扑排序{    int c=0,temp[27],loc,m,flag=1,i,j;  ////flag=1:有序 flag=-1:不确定    for(i=1;i&lt;=n;i++)        temp[i]=indegree[i];    for(i=1;i&lt;=n;i++)    {        m=0;        for(j=1;j&lt;=n;j++)            if(temp[j]==0) { m++; loc=j; }  //查找入度为零的顶点个数        if(m==0) return 0;  //有环        if(m&gt;1) flag=-1;  // 无序        q[c++]=loc;   //入度为零的点入队        temp[loc]=-1;        for(j=1;j&lt;=n;j++)            if(map[loc][j]==1) temp[j]--;    }    return flag;}int main(){    int m,n,i,sign;  //当sign=1时，已得出结果    char str[5];    while(scanf(&quot;%d%d&quot;,&amp;n,&amp;m))    {        if(m==0&amp;&amp;n==0) break;        memset(map,0,sizeof(map));        memset(indegree,0,sizeof(indegree));        sign=0;        for(i=1;i&lt;=m;i++)        {            scanf(&quot;%s&quot;,str);            if(sign) continue; //一旦得出结果，对后续的输入不做处理            int x=str[0]-&apos;A&apos;+1;            int y=str[2]-&apos;A&apos;+1;            map[x][y]=1;            indegree[y]++;            int s=TopoSort(n);            if(s==0) //有环            {                printf(&quot;Inconsistency found after %d relations.\n&quot;,i);                sign=1;            }            if(s==1) //有序            {                printf(&quot;Sorted sequence determined after %d relations: &quot;,i);                for(int j=0;j&lt;n;j++)                    printf(&quot;%c&quot;,q[j]+&apos;A&apos;-1);                printf(&quot;.\n&quot;);                sign=1;            }        }        if(!sign) //不确定            printf(&quot;Sorted sequence cannot be determined.\n&quot;);    }    return 0;}</code></pre><h2 id="采用DFS-求有向无环图的拓扑排序-7"><a href="#采用DFS-求有向无环图的拓扑排序-7" class="headerlink" title="采用DFS 求有向无环图的拓扑排序[7]"></a>采用DFS 求有向无环图的拓扑排序[<a href="http://www.cnblogs.com/flipped/p/5530691.html" target="_blank" rel="external">7</a>]</h2><pre><code>#include &lt;cstdio&gt;#include &lt;cstring&gt;#define N 30int n, m, g[N][N], c[N], t, ans;char a, b, topo[N];int dfs(int u){    c[u] = -1;    for(int v = 0; v &lt; n; v++)if(g[u][v])        {            if(c[v] &lt; 0)return 0;            else if(!c[v] &amp;&amp; !dfs(v))return 0;        }    c[u] = 1;    topo[--t] = u;    return 1;}int toposort(){    t = n;    memset(c, 0, sizeof c);    for(int u = 0; u &lt; n; u++)        if(!c[u] &amp;&amp; !dfs(u))return 0;    for(int i = 1; i &lt; n; i++)        if(!g[topo[i - 1]][topo[i]])return -1;    return 1;}int main(){ //  freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);    while(~scanf(&quot;%d%d &quot;, &amp;n, &amp;m) &amp;&amp; n)    {        ans = -1;        memset(g, 0, sizeof g);        for(int i = 1; i &lt;= m; i++)        {            scanf(&quot;%c&lt;%c &quot;, &amp;a, &amp;b);            g[a - &apos;A&apos;][b - &apos;A&apos;] = 1;            if(ans == -1)            {                ans = toposort();                if(!ans)                    printf(&quot;Inconsistency found after %d relations.\n&quot;, i);                else if(ans == 1)                {                    printf(&quot;Sorted sequence determined after %d relations: &quot;, i);                    for(int j = 0; j &lt; n; j++)printf(&quot;%c&quot;, topo[j] + &apos;A&apos;);                    printf(&quot;.\n&quot;);                }            }        }        if(ans == -1)printf(&quot;Sorted sequence cannot be determined.\n&quot;);    }    return 0;}</code></pre><h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><p>在图论中，由一个有向无环图的顶点组成的序列，当且仅当满足下列条件时，称为该图的一个拓扑排序（英语：Topological sorting）。</p><ol><li>每个顶点出现且只出现一次；</li><li>若A在序列中排在B的前面，则在图中不存在从B到A的路径。</li></ol><p>也可以定义为：拓扑排序是对有向无环图的顶点的一种排序，它使得如果存在一条从顶点A到顶点B的路径，那么在排序中B出现在A的后面。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol><li><a href="http://www.cnblogs.com/yueshuqiao/archive/2011/08/16/2140485.html" target="_blank" rel="external">POJ1094拓扑排序</a></li><li><a href="https://zh.wikipedia.org/wiki/%E6%8B%93%E6%92%B2%E6%8E%92%E5%BA%8F" target="_blank" rel="external">拓扑排序</a></li><li><a href="http://blog.csdn.net/dm_vincent/article/details/7714519" target="_blank" rel="external">拓扑排序的原理及其实现</a></li><li><a href="https://songlee24.github.io/2015/05/07/topological-sorting/" target="_blank" rel="external">拓扑排序（Topological Sorting）</a></li><li><a href="http://www.cnblogs.com/en-heng/p/5085690.html" target="_blank" rel="external">【图论】有向无环图的拓扑排序</a></li><li><a href="http://www.jianshu.com/p/9db01daf978e" target="_blank" rel="external">POJ1094 拓扑排序</a></li><li><a href="http://www.cnblogs.com/flipped/p/5530691.html" target="_blank" rel="external">【POJ 1094】拓扑排序</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;p&gt;题目链接：&lt;a href=&quot;http://poj.org/problem?id=1094&quot; target=&quot;_blank&quot; rel=&quot;ext
+      
+    
+    </summary>
+    
+    
+      <category term="POJ" scheme="http://aolish333.github.io/tags/POJ/"/>
+    
+      <category term="拓扑排序" scheme="http://aolish333.github.io/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title> HDU1232(并查集)</title>
