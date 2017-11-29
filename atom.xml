@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2017-11-04T03:23:00.650Z</updated>
+  <updated>2017-11-29T01:39:41.281Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSH整合错误总结</title>
+    <link href="http://aolish333.github.io/2017/11/28/SSH%E6%95%B4%E5%90%88%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/"/>
+    <id>http://aolish333.github.io/2017/11/28/SSH整合错误总结/</id>
+    <published>2017-11-28T03:54:38.000Z</published>
+    <updated>2017-11-29T01:39:41.281Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近整合SSH框架，第一次搞这玩意，有点怂面对BUG有些无能为力，最后还是得硬着头皮看日志。</p><h2 id="java-lang-NoClassDefFoundError-org-hibernate-annotations-common-reflection-ClassLoaderDelegate"><a href="#java-lang-NoClassDefFoundError-org-hibernate-annotations-common-reflection-ClassLoaderDelegate" class="headerlink" title="java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/ClassLoaderDelegate"></a>java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/ClassLoaderDelegate</h2><pre><code>org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;sessionFactory&apos; defined in class path resource [applicationContext.xml]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/ClassLoaderDelegate</code></pre><p>根据提示到网上找到了结果，但是开始的时候，安装的是5.0.4的包仍然报错。最后改成4.0.4.Final就不报错了。</p><p>下面是添加的依赖：</p><pre><code>&lt;dependency&gt;    &lt;groupId&gt;org.hibernate.common&lt;/groupId&gt;    &lt;artifactId&gt;hibernate-commons-annotations&lt;/artifactId&gt;    &lt;version&gt;4.0.4.Final&lt;/version&gt;&lt;/dependency&gt;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近整合SSH框架，第一次搞这玩意，有点怂面对BUG有些无能为力，最后还是得硬着头皮看日志。&lt;/p&gt;
+&lt;h2 id=&quot;java-lang-NoClassDefFoundError-org-hibernate-annotations-common-reflection-Cla
+      
+    
+    </summary>
+    
+    
+      <category term="SSH" scheme="http://aolish333.github.io/tags/SSH/"/>
+    
+      <category term="Bug集" scheme="http://aolish333.github.io/tags/Bug%E9%9B%86/"/>
+    
+  </entry>
   
   <entry>
     <title>POJ1094</title>
