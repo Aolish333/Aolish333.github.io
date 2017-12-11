@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2017-11-29T01:39:41.281Z</updated>
+  <updated>2017-12-11T08:08:01.681Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Boot 学习(一）</title>
+    <link href="http://aolish333.github.io/2017/12/01/Spring-Boot-%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://aolish333.github.io/2017/12/01/Spring-Boot-学习/</id>
+    <published>2017-12-01T12:55:10.000Z</published>
+    <updated>2017-12-11T08:08:01.681Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p>Spring Boot 作为未来的框架。之前自己的学习模式一直都是看中文的文档，或者相关的书籍。这次想趁着学习spring尝试一种新的学习模式。主要通过看官网的介绍来尝试的学习去。</p><p>#微服务<br><strong>维基百科的定义：</strong><br>微服务 (Microservices) 是一种软件架构风格，它是以专注于单一责任与功能的小型功能区块 (Small Building Blocks) 为基础，利用模组化的方式组合出复杂的大型应用程序，各功能区块使用与语言无关 (Language-Independent/Language agnostic) 的 API 集相互通讯。微服务架构运用于软件架构风格的其中一项概念是甘露运算 (Dew Computing)，意指由许多的小露水 (代表微服务的功能元件) 汇集而成的运算能力。</p><p>微服务、SOA的对照:<a href="https://www.ibm.com/developerworks/cn/websphere/library/techarticles/1601_clark-trs/1601_clark.html" target="_blank" rel="external">微服务、SOA 和 API：是敌是友？</a>。</p><h1 id="Spring-mevan的官方配置文件"><a href="#Spring-mevan的官方配置文件" class="headerlink" title="Spring mevan的官方配置文件"></a>Spring mevan的官方配置文件</h1><p>Spring Boot与Apache Maven 3.2或更高版本兼容。</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;&lt;groupId&gt;com.example&lt;/groupId&gt;&lt;artifactId&gt;myproject&lt;/artifactId&gt;&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;&lt;!-- Inherit defaults from Spring Boot --&gt;&lt;parent&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;    &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;&lt;/parent&gt;&lt;!-- Add typical dependencies for a web application --&gt;&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;    &lt;/dependency&gt;&lt;/dependencies&gt;&lt;!-- Package as an executable jar --&gt;&lt;build&gt;    &lt;plugins&gt;        &lt;plugin&gt;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;    &lt;/plugins&gt;&lt;/build&gt;</code></pre><p>    </p><p>Spring Boot包含一个Maven插件，可以将项目打包为可执行的jar文件。如果你想使用它，请将插件添加到</p><h2 id="兼容java-版本"><a href="#兼容java-版本" class="headerlink" title="兼容java 版本"></a>兼容java 版本</h2><p>spring-boot-starter-parent选择相当保守的Java兼容性。如果您想遵循我们的建议并使用较新的Java版本，则可以添加一个java.version属性：</p><pre><code>&lt;properties&gt;&lt;java.version&gt;1.8&lt;/java.version&gt;&lt;/properties&gt;</code></pre><h2 id="添加-spring-boot-maven-plugin-的原因。"><a href="#添加-spring-boot-maven-plugin-的原因。" class="headerlink" title="添加 spring-boot-maven-plugin 的原因。"></a>添加 spring-boot-maven-plugin 的原因。</h2><p>Java不提供任何标准的方式来加载嵌套的jar文件（即jar文件本身包含在jar中）。如果您正在分发自包含的应用程序，这可能会有问题。</p><p>为了解决这个问题，许多开发者使用嵌套jar包。 嵌套jar包只是将所有jar包里的所有类打包成一个单一的档案。 这种方法的问题在于，很难在应用程序中看到实际使用的库。 如果在多个jar包中使用相同的文件名（但具有不同的内容），则也可能是有问题的。</p><p>Spring Boot采用了不同的方法，可以直接嵌入jar包。<br>要创建一个可执行的jar文件，我们需要将spring-boot-maven-plugin添加到我们的pom.xml。</p><h1 id="HelloWord"><a href="#HelloWord" class="headerlink" title="HelloWord"></a>HelloWord</h1><pre><code>import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.EnableAutoConfiguration;import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RestController;/** * @author aolish333@gmail.com * @date 2017/12/1 19:46 * User:Lee */@RestController@EnableAutoConfigurationpublic class HelloCotroller {    @RequestMapping(&quot;/&quot;)    String home() {        return &quot;Hello World!&quot;;    }    public static void main(String[] args) throws Exception {        SpringApplication.run(HelloCotroller.class, args);    }}</code></pre><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/" target="_blank" rel="external">spring 官方文档</a></p><p><a href="http://www.jianshu.com/p/39c1e4ec0d63" target="_blank" rel="external">什么是微服务</a></p><p><a href="https://zh.wikipedia.org/wiki/%E5%BE%AE%E6%9C%8D%E5%8B%99" target="_blank" rel="external">微服务</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;初衷&quot;&gt;&lt;a href=&quot;#初衷&quot; class=&quot;headerlink&quot; title=&quot;初衷&quot;&gt;&lt;/a&gt;初衷&lt;/h1&gt;&lt;p&gt;Spring Boot 作为未来的框架。之前自己的学习模式一直都是看中文的文档，或者相关的书籍。这次想趁着学习spring尝试一种新的学习模
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://aolish333.github.io/tags/Spring/"/>
+    
+      <category term="Spring Boot" scheme="http://aolish333.github.io/tags/Spring-Boot/"/>
+    
+      <category term="学习笔记" scheme="http://aolish333.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>SSH整合错误总结</title>
