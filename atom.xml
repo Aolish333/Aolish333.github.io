@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2017-12-11T08:08:01.681Z</updated>
+  <updated>2018-01-23T09:42:55.877Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>美赛模板总结</title>
+    <link href="http://aolish333.github.io/2018/01/23/%E7%BE%8E%E8%B5%9B%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/"/>
+    <id>http://aolish333.github.io/2018/01/23/美赛模板总结/</id>
+    <published>2018-01-23T09:41:15.000Z</published>
+    <updated>2018-01-23T09:42:55.877Z</updated>
+    
+    <content type="html"><![CDATA[<p>只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>\section 一级标题<br>\subsection 二级标题<br>\subsubsection 三级标题</p><h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><pre><code>\begin{enumerate}    \item[1)] A nest item.    \item[2)] A nest item.</code></pre><p>\end{enumerate}</p><h2 id="无须列表"><a href="#无须列表" class="headerlink" title="无须列表"></a>无须列表</h2><pre><code>\begin{itemize}     \item An item.     \begin{itemize}         \item A nested item.         \item[+] A ‘plus’ item.         \item Another item.     \end{itemize}     \item Go back to upper level. \end{itemize}</code></pre><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><p>在需要引用的时候,<code>\label{}</code> 和 <code>\ref{}</code> 是成对出现的。前者是标签，后者是引用，大括号内的内容相同。</p><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>对于制图可用excel、matlab、R、python、PPT和Latex–TikZ&amp;PGF等软件。但对于复杂的图形，一般采用PPT或者coding类型的软件。</p><h3 id="并排放置两张图"><a href="#并排放置两张图" class="headerlink" title="并排放置两张图"></a>并排放置两张图</h3><p>引入包：<br>\usepackage{caption} % 图片<br>\usepackage{subfigure} % 图片<br>代码:</p><pre><code>\begin{figure}[htbp]    \centering        %居中    \subfigure[name of the subfigure]{      %第一张子图        \begin{minipage}{7cm}            \centering                   %子图居中            \includegraphics[scale=0.4]{one_3.jpg}          %以pic.jpg的0.4倍大小输出        \end{minipage}}    \subfigure[name of the subfigure]{          %第二张子图        \begin{minipage}{7cm}            \centering                                                          %子图居中            \includegraphics[scale=0.4]{one_3.jpg}         %以pic.jpg的0.5倍大小输出        \end{minipage}}    \caption{name of the figure} %          %大图名称    \label{fig:1}      %图片引用标记\end{figure}</code></pre><h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol><li><a href="https://www.zhihu.com/question/41322252" target="_blank" rel="external">LaTeX 如何让两张图并排显示？</a></li><li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100gdqy.html" target="_blank" rel="external">LaTeX技巧151：subfigure排版并排放置两图</a></li><li><a href="http://zqdevres.qiniucdn.com/data/20141217174706/index.html" target="_blank" rel="external">如何在论文中画出漂亮的插图？</a></li><li><a href="http://www.cnblogs.com/tsingke/p/6649800.html" target="_blank" rel="external">Latex–TikZ和PGF–高级文本绘图，思维绘图，想到–得到！</a></li></ol><h2 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h2><p>导入的表格一般是三段式。代码如下</p><pre><code>% 引入的宏包%\usepackage{booktabs} % 表格%\usepackage{makecell} % 表格线段的粗细\begin{table}[htbp]\centering\caption{\label{tab:Symbols}Symbols and Definitions}\begin{tabular}{c c}    \Xhline{1.2pt}    Symbol  &amp; Deﬁnition  \\    \midrule    i &amp;  the ith dam in a series of small dams \\    i &amp;  the ith dam in a series of small dams \\    i &amp;  the ith dam in a series of small dams \\    \Xhline{1.2pt}\end{tabular}</code></pre><p>\end{table}</p><h3 id="导入表格的第三方插件"><a href="#导入表格的第三方插件" class="headerlink" title="导入表格的第三方插件"></a>导入表格的第三方插件</h3><p>写数学建模的论文，有时候需要导入表格，自己新建表格太累。一般是导入表格之后再就行调试。<br><a href="https://ctan.org/tex-archive/support/excel2latex/" target="_blank" rel="external">Excel2LaTeX.xla 下载链接</a><br>下载完后，加入Excel加载项，如下图所示<br><img src="https://i.imgur.com/EBmw4Zg.png" alt=""></p><h2 id="插入公式"><a href="#插入公式" class="headerlink" title="插入公式"></a>插入公式</h2><p>基本公式的使用可以参考你所使用的编译器的导航栏，以便了解公式的基本使用。或者你可以参考下面的参考文献 1。</p><h3 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h3><pre><code>\times 乘号</code></pre><h2 id="插入文献"><a href="#插入文献" class="headerlink" title="插入文献"></a>插入文献</h2><p>引入多个参考文献</p><pre><code>\usepackage[numbers,sort&amp;compress]{natbib} % 引入多个参考文献\cite{bibtex1，bibtex2，bibtex3} % 引入</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>引入文件对于latex 来说有许多快捷方式。对于文件的管理可参考文献 2 知乎的回答。</p><ol><li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100fs38.html" target="_blank" rel="external">LaTeX技巧10：LaTeX数学公式输入初级入门</a></li><li><a href="https://www.zhihu.com/question/23565739" target="_blank" rel="external">如何在LaTeX写作中管理参考文献?</a></li><li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100fw68.html" target="_blank" rel="external">LaTeX技巧23:BIBTeX制作参考文献</a></li></ol><h1 id="分文件进行编写"><a href="#分文件进行编写" class="headerlink" title="分文件进行编写"></a>分文件进行编写</h1><p>在书写论文时，为了使编译的文章便于调试往往需要分文件进行书写。</p><p>\input{} 导入到主文件里不分页。<br>\include{} 导入主文件新起一页，只能用在正文里<br>{}里只写文件名不屑后缀。</p><p>在 mcmthesis 中建议附录用\include{},其他用\input{}</p><h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ol><li><a href="http://blog.csdn.net/yanxiangtianji/article/details/13169699" target="_blank" rel="external">latex分文件编写技巧</a></li></ol><h2 id="插入代码"><a href="#插入代码" class="headerlink" title="插入代码"></a>插入代码</h2><h1 id="Tex-studio-常用快捷键"><a href="#Tex-studio-常用快捷键" class="headerlink" title="Tex studio 常用快捷键"></a>Tex studio 常用快捷键</h1><pre><code>crt+T 注释与取消注释crt+E 环境</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。&lt;/p&gt;
+&lt;h1 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h1&gt;&lt;h2 id=&quot;标题&quot;&gt;&lt;a href
+      
+    
+    </summary>
+    
+    
+      <category term="数学建模" scheme="http://aolish333.github.io/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
+    
+      <category term="美赛" scheme="http://aolish333.github.io/tags/%E7%BE%8E%E8%B5%9B/"/>
+    
+      <category term="Latex" scheme="http://aolish333.github.io/tags/Latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql更改存储路径后服务无法启动的问题</title>
+    <link href="http://aolish333.github.io/2018/01/09/mysql%E6%9B%B4%E6%94%B9%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84%E5%90%8E%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://aolish333.github.io/2018/01/09/mysql更改存储路径后服务无法启动的问题/</id>
+    <published>2018-01-09T03:44:06.000Z</published>
+    <updated>2018-01-09T03:47:55.087Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><pre><code>如题，在修改完存储路径后，移植../Data文件后，发现服务器不能启动，后来配置环境变量。将修改后的路径添加到path 环境变量后，mysql 正常启动。</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;解决方法&quot;&gt;&lt;a href=&quot;#解决方法&quot; class=&quot;headerlink&quot; title=&quot;解决方法&quot;&gt;&lt;/a&gt;解决方法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;如题，在修改完存储路径后，移植../Data文件后，发现服务器不能启动，后来配置环境变量。将修改后的路径添加
+      
+    
+    </summary>
+    
+    
+      <category term="Mysql" scheme="http://aolish333.github.io/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fork 别人的项目如何提交给原作者？</title>
+    <link href="http://aolish333.github.io/2017/12/25/fork%20%E5%88%AB%E4%BA%BA%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E7%BB%99%E5%8E%9F%E4%BD%9C%E8%80%85%EF%BC%9F/"/>
+    <id>http://aolish333.github.io/2017/12/25/fork 别人的项目如何提交给原作者？/</id>
+    <published>2017-12-25T03:46:42.000Z</published>
+    <updated>2017-12-25T04:22:10.710Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>已经fork 原作者代码，并进行修改，想提交给原作者。</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>首先打开自己的项目地址，点击<strong>Pull requests</strong>。然后点击<strong>New request</strong>进行提交申请。如下图所示。<br><img src="https://i.imgur.com/2pczkd1.png" alt="New pull request"></p><p>由于我之前已经提交过一次，所以下图没有显示更改的信息。</p><p><img src="https://i.imgur.com/1ikWaR3.png" alt="提交的信息"></p><p>点击<strong>create pull request </strong>进行提交。</p><p><img src="https://i.imgur.com/TZj9EPk.png" alt="填写信息"><br>填写信息后，<strong>create pull request </strong>进行提交。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p> <a href="http://blog.csdn.net/qq1332479771/article/details/56087333" target="_blank" rel="external">github上fork了别人的项目后，再同步更新别人的提交</a></p><p><a href="https://www.cnblogs.com/haore147/p/4218611.html" target="_blank" rel="external">如何在github上fork一个项目来贡献代码以及同步原作者的修改</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;已经fork 原作者代码，并进行修改，想提交给原作者。&lt;/p&gt;
+&lt;h1 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;heade
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://aolish333.github.io/tags/git/"/>
+    
+      <category term="github" scheme="http://aolish333.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Boot 学习笔记(二）</title>
+    <link href="http://aolish333.github.io/2017/12/11/Spring%20Boot%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C%EF%BC%89/"/>
+    <id>http://aolish333.github.io/2017/12/11/Spring Boot 学习笔记(二）/</id>
+    <published>2017-12-11T08:23:22.000Z</published>
+    <updated>2017-12-11T08:31:34.787Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Spring-Boot-的三种启动方式"><a href="#Spring-Boot-的三种启动方式" class="headerlink" title="Spring Boot 的三种启动方式"></a>Spring Boot 的三种启动方式</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Spring-Boot-的三种启动方式&quot;&gt;&lt;a href=&quot;#Spring-Boot-的三种启动方式&quot; class=&quot;headerlink&quot; title=&quot;Spring Boot 的三种启动方式&quot;&gt;&lt;/a&gt;Spring Boot 的三种启动方式&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Spring Boot 学习(一）</title>

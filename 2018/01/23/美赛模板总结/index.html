@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数学建模,美赛,Latex," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ThinkingSite" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。 正文标题\section 一级标题\subsection 二级标题\subsubsection 三级标题 有序列表\begin{enumerate}     \item[1)] A nest item.     \item[2)] A nest item. \end{enumerate} 无须列表\beg">
+<meta name="keywords" content="数学建模,美赛,Latex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美赛模板总结">
+<meta property="og:url" content="http://aolish333.github.io/2018/01/23/美赛模板总结/index.html">
+<meta property="og:site_name" content="ThinkingSite">
+<meta property="og:description" content="只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。 正文标题\section 一级标题\subsection 二级标题\subsubsection 三级标题 有序列表\begin{enumerate}     \item[1)] A nest item.     \item[2)] A nest item. \end{enumerate} 无须列表\beg">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/EBmw4Zg.png">
+<meta property="og:updated_time" content="2018-01-23T09:42:55.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="美赛模板总结">
+<meta name="twitter:description" content="只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。 正文标题\section 一级标题\subsection 二级标题\subsubsection 三级标题 有序列表\begin{enumerate}     \item[1)] A nest item.     \item[2)] A nest item. \end{enumerate} 无须列表\beg">
+<meta name="twitter:image" content="https://i.imgur.com/EBmw4Zg.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://aolish333.github.io/2018/01/23/美赛模板总结/"/>
+
+
+
+
+
+  <title>美赛模板总结 | ThinkingSite</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107511913-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e533eedecde62fe60e12cb3c44680335";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ThinkingSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'bpPM7F26iHJqD7SWK-NQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://aolish333.github.io/2018/01/23/美赛模板总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThinkingSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">美赛模板总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T17:41:15+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>\section 一级标题<br>\subsection 二级标题<br>\subsubsection 三级标题</p>
+<h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><pre><code>\begin{enumerate}
+    \item[1)] A nest item.
+    \item[2)] A nest item.
+</code></pre><p>\end{enumerate}</p>
+<h2 id="无须列表"><a href="#无须列表" class="headerlink" title="无须列表"></a>无须列表</h2><pre><code>\begin{itemize} 
+    \item An item. 
+    \begin{itemize} 
+        \item A nested item. 
+        \item[+] A ‘plus’ item. 
+        \item Another item. 
+    \end{itemize} 
+    \item Go back to upper level. 
+\end{itemize}
+</code></pre><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><p>在需要引用的时候,<code>\label{}</code> 和 <code>\ref{}</code> 是成对出现的。前者是标签，后者是引用，大括号内的内容相同。</p>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>对于制图可用excel、matlab、R、python、PPT和Latex–TikZ&amp;PGF等软件。但对于复杂的图形，一般采用PPT或者coding类型的软件。</p>
+<h3 id="并排放置两张图"><a href="#并排放置两张图" class="headerlink" title="并排放置两张图"></a>并排放置两张图</h3><p>引入包：<br>\usepackage{caption} % 图片<br>\usepackage{subfigure} % 图片<br>代码:</p>
+<pre><code>\begin{figure}[htbp]
+    \centering        %居中
+    \subfigure[name of the subfigure]{      %第一张子图
+        \begin{minipage}{7cm}
+            \centering                   %子图居中
+            \includegraphics[scale=0.4]{one_3.jpg}          %以pic.jpg的0.4倍大小输出
+        \end{minipage}}
+    \subfigure[name of the subfigure]{          %第二张子图
+        \begin{minipage}{7cm}
+            \centering                                                          %子图居中
+            \includegraphics[scale=0.4]{one_3.jpg}         %以pic.jpg的0.5倍大小输出
+        \end{minipage}}
+    \caption{name of the figure} %          %大图名称
+    \label{fig:1}      %图片引用标记
+\end{figure}
+</code></pre><h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol>
+<li><a href="https://www.zhihu.com/question/41322252" target="_blank" rel="external">LaTeX 如何让两张图并排显示？</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100gdqy.html" target="_blank" rel="external">LaTeX技巧151：subfigure排版并排放置两图
+</a></li>
+<li><a href="http://zqdevres.qiniucdn.com/data/20141217174706/index.html" target="_blank" rel="external">如何在论文中画出漂亮的插图？</a></li>
+<li><a href="http://www.cnblogs.com/tsingke/p/6649800.html" target="_blank" rel="external">Latex–TikZ和PGF–高级文本绘图，思维绘图，想到–得到！</a></li>
+</ol>
+<h2 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h2><p>导入的表格一般是三段式。代码如下</p>
+<pre><code>% 引入的宏包
+%\usepackage{booktabs} % 表格
+%\usepackage{makecell} % 表格线段的粗细
+
+\begin{table}[htbp]
+\centering
+\caption{\label{tab:Symbols}Symbols and Definitions}
+\begin{tabular}{c c}
+    \Xhline{1.2pt}
+    Symbol  &amp; Deﬁnition  \\
+    \midrule
+    i &amp;  the ith dam in a series of small dams \\
+    i &amp;  the ith dam in a series of small dams \\
+    i &amp;  the ith dam in a series of small dams \\
+    \Xhline{1.2pt}
+\end{tabular}
+</code></pre><p>\end{table}</p>
+<h3 id="导入表格的第三方插件"><a href="#导入表格的第三方插件" class="headerlink" title="导入表格的第三方插件"></a>导入表格的第三方插件</h3><p>写数学建模的论文，有时候需要导入表格，自己新建表格太累。一般是导入表格之后再就行调试。<br><a href="https://ctan.org/tex-archive/support/excel2latex/" target="_blank" rel="external">Excel2LaTeX.xla 下载链接</a><br>下载完后，加入Excel加载项，如下图所示<br><img src="https://i.imgur.com/EBmw4Zg.png" alt=""></p>
+<h2 id="插入公式"><a href="#插入公式" class="headerlink" title="插入公式"></a>插入公式</h2><p>基本公式的使用可以参考你所使用的编译器的导航栏，以便了解公式的基本使用。或者你可以参考下面的参考文献 1。</p>
+<h3 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h3><pre><code>\times 乘号
+</code></pre><h2 id="插入文献"><a href="#插入文献" class="headerlink" title="插入文献"></a>插入文献</h2><p>引入多个参考文献</p>
+<pre><code>\usepackage[numbers,sort&amp;compress]{natbib} % 引入多个参考文献
+
+\cite{bibtex1，bibtex2，bibtex3} % 引入
+</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>引入文件对于latex 来说有许多快捷方式。对于文件的管理可参考文献 2 知乎的回答。</p>
+<ol>
+<li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100fs38.html" target="_blank" rel="external">LaTeX技巧10：LaTeX数学公式输入初级入门</a></li>
+<li><a href="https://www.zhihu.com/question/23565739" target="_blank" rel="external">如何在LaTeX写作中管理参考文献?</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100fw68.html" target="_blank" rel="external">LaTeX技巧23:BIBTeX制作参考文献</a></li>
+</ol>
+<h1 id="分文件进行编写"><a href="#分文件进行编写" class="headerlink" title="分文件进行编写"></a>分文件进行编写</h1><p>在书写论文时，为了使编译的文章便于调试往往需要分文件进行书写。</p>
+<p>\input{} 导入到主文件里不分页。<br>\include{} 导入主文件新起一页，只能用在正文里<br>{}里只写文件名不屑后缀。</p>
+<p>在 mcmthesis 中建议附录用\include{},其他用\input{}</p>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="http://blog.csdn.net/yanxiangtianji/article/details/13169699" target="_blank" rel="external">latex分文件编写技巧</a></li>
+</ol>
+<h2 id="插入代码"><a href="#插入代码" class="headerlink" title="插入代码"></a>插入代码</h2><h1 id="Tex-studio-常用快捷键"><a href="#Tex-studio-常用快捷键" class="headerlink" title="Tex studio 常用快捷键"></a>Tex studio 常用快捷键</h1><pre><code>crt+T 注释与取消注释
+crt+E 环境
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_lee.png" alt="Lee WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay_lee.jpg" alt="Lee Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数学建模/" rel="tag"># 数学建模</a>
+          
+            <a href="/tags/美赛/" rel="tag"># 美赛</a>
+          
+            <a href="/tags/Latex/" rel="tag"># Latex</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/09/mysql更改存储路径后服务无法启动的问题/" rel="next" title="mysql更改存储路径后服务无法启动的问题">
+                <i class="fa fa-chevron-left"></i> mysql更改存储路径后服务无法启动的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTE4NS83NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Lee" />
+          <p class="site-author-name" itemprop="name">Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">一切的关键在于必须承认一加一等于二；弄明白了这一点，其他一切全会迎刃而解。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="aolish333@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/aolish333" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-mou-11-67/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">1.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题"><span class="nav-number">1.1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序列表"><span class="nav-number">1.2.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无须列表"><span class="nav-number">1.3.</span> <span class="nav-text">无须列表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">2.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉引用"><span class="nav-number">2.1.</span> <span class="nav-text">交叉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入图片"><span class="nav-number">2.2.</span> <span class="nav-text">插入图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并排放置两张图"><span class="nav-number">2.2.1.</span> <span class="nav-text">并排放置两张图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">2.2.2.</span> <span class="nav-text">参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入表格"><span class="nav-number">2.3.</span> <span class="nav-text">插入表格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入表格的第三方插件"><span class="nav-number">2.3.1.</span> <span class="nav-text">导入表格的第三方插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入公式"><span class="nav-number">2.4.</span> <span class="nav-text">插入公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学符号"><span class="nav-number">2.4.1.</span> <span class="nav-text">数学符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入文献"><span class="nav-number">2.5.</span> <span class="nav-text">插入文献</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.5.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分文件进行编写"><span class="nav-number">3.</span> <span class="nav-text">分文件进行编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入代码"><span class="nav-number">3.1.</span> <span class="nav-text">插入代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tex-studio-常用快捷键"><span class="nav-number">4.</span> <span class="nav-text">Tex studio 常用快捷键</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lee</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
