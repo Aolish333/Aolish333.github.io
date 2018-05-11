@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2018-02-07T08:47:47.609Z</updated>
+  <updated>2018-05-11T10:27:22.064Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.whl is not supported wheel on this platform</title>
+    <link href="http://aolish333.github.io/2018/05/11/python/"/>
+    <id>http://aolish333.github.io/2018/05/11/python/</id>
+    <published>2018-05-11T10:22:37.000Z</published>
+    <updated>2018-05-11T10:27:22.064Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装python的包，出现如标题的的错误，安装了一下午，才发现要与自己所安装包的版本要一致，其次之前报的是下面的错误：<br>    error: Microsoft Visual C++ 14.0 is required.<br>我的解决方案是:下载了VScode 2015。</p><p>自己单独下载了 Microsoft Visual C++ 14.0 没有解决问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;安装python的包，出现如标题的的错误，安装了一下午，才发现要与自己所安装包的版本要一致，其次之前报的是下面的错误：&lt;br&gt;    error: Microsoft Visual C++ 14.0 is required.&lt;br&gt;我的解决方案是:下载了VScode 201
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://aolish333.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>美赛模板总结</title>
