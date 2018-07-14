@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2018-05-11T10:27:22.064Z</updated>
+  <updated>2018-07-14T02:34:50.087Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PAT A1001</title>
+    <link href="http://aolish333.github.io/2018/07/14/PAT-A1001/"/>
+    <id>http://aolish333.github.io/2018/07/14/PAT-A1001/</id>
+    <published>2018-07-14T02:30:37.000Z</published>
+    <updated>2018-07-14T02:34:50.087Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1001-A-B-Format-20-（20-point-s-）"><a href="#1001-A-B-Format-20-（20-point-s-）" class="headerlink" title="1001 A+B Format (20)（20 point(s)）"></a>1001 A+B Format (20)（20 point(s)）</h1><p>Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).</p><p>##Input</p><p>Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 &lt;= a, b &lt;= 1000000. The numbers are separated by a space.</p><h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.</p><h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><p>-1000000 9<br>Sample Output</p><p>-999,991</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>#include &lt;cstdio&gt;#include &lt;iostream&gt;using namespace std;/** * 参考网上方法总结： * 1、采用数组进行存储 * 2、采用栈进行存储 * 3、用字符串进行输出 * */int main() {  int a, b;  int result, number[12] = {0};  int len = 0;  while ((cin &gt;&gt; a &gt;&gt; b) &amp;&amp; (a || b)) {    result = a + b;    if (result &lt; 0) {      cout &lt;&lt; &quot;-&quot;;      result = -result;    }    if (result == 0)      number[len++] = 0;    while (result != 0) {      number[len++] = result % 10;      result /= 10;    }    for (int j = len - 1; j &gt;= 0; j--) {      cout &lt;&lt; number[j];      if (j &gt; 0 &amp;&amp; j % 3 == 0) {        cout &lt;&lt; &apos;,&apos;;      }    }  }  system(&quot;pause&quot;);  return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1001-A-B-Format-20-（20-point-s-）&quot;&gt;&lt;a href=&quot;#1001-A-B-Format-20-（20-point-s-）&quot; class=&quot;headerlink&quot; title=&quot;1001 A+B Format (20)（20 poin
+      
+    
+    </summary>
+    
+    
+      <category term="PAT" scheme="http://aolish333.github.io/tags/PAT/"/>
+    
+      <category term="算法" scheme="http://aolish333.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>.whl is not supported wheel on this platform</title>
