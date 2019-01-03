@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2018-07-14T02:34:50.087Z</updated>
+  <updated>2019-01-03T08:00:23.482Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式平台搭建所遇到的问题</title>
+    <link href="http://aolish333.github.io/2019/01/03/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://aolish333.github.io/2019/01/03/分布式平台搭建所遇到的问题/</id>
+    <published>2019-01-03T07:41:27.000Z</published>
+    <updated>2019-01-03T08:00:23.482Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在搭建分布式平台时，一开始按照网上的教程但是配置centos的网卡但是一直报<code>job for network.service failed because the control process exited with error code</code>的错误，后来修改了好多次虽然网卡配置好了，但还是ping 不到外网。最后在安装centos前验证centos是否完好时，发下真正的错是下面的问题。</p><p><code>Determining IP Information for eth0/3</code> 的问题，查询得知这是，linux网卡驱动与vmware之间的bug,由于自己用vaware12版本。得出的解决方法如下</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol><li><a href="https://blog.csdn.net/gengkunpeng/article/details/46495631" target="_blank" rel="external">Determining IP Information for eth0</a></li><li>升级vmware版本。注释：我是升级到15版本。</li></ol><h2 id="思考：为啥自己改bug的效率如此的低？"><a href="#思考：为啥自己改bug的效率如此的低？" class="headerlink" title="思考：为啥自己改bug的效率如此的低？"></a>思考：为啥自己改bug的效率如此的低？</h2><ol><li>找不到真正出错的地方。</li><li>学习新东西没有先把原理搞清楚，只是一直在试探。</li><li>太浮躁。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;在搭建分布式平台时，一开始按照网上的教程但是配置centos的网卡但是一直报&lt;code&gt;job for network.se
+      
+    
+    </summary>
+    
+    
+      <category term="bug" scheme="http://aolish333.github.io/tags/bug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>指针</title>
+    <link href="http://aolish333.github.io/2018/07/16/%E6%8C%87%E9%92%88/"/>
+    <id>http://aolish333.github.io/2018/07/16/指针/</id>
+    <published>2018-07-16T07:46:32.000Z</published>
+    <updated>2018-07-16T08:30:40.400Z</updated>
+    
+    <content type="html"><![CDATA[<p>大一学的C语言，虽然自认为当时学的还不错，这几年也没咋用，有些小细节已经忘了。<br>下面参考已经写的挺不错了，我就总结一下自己要用的东西吧。</p><h1 id="指针的一些疑惑"><a href="#指针的一些疑惑" class="headerlink" title="指针的一些疑惑"></a>指针的一些疑惑</h1><p>int &amp;<em>p； 是不正确的，</em>与p靠得最近，所以p是一个指针，但是这个指针的类型是int &amp;,所以这个是错吴的， 因为不能创建引用的指针。</p><p>int <em>&amp; p, 是正确的， &amp;与p靠得最近，所以p是一个引用，这个引用的类型是int</em>，也就是一个指针变量的引用，但是必须初始化，否则也是错误的。</p><p>#参考博文</p><ol><li><a href="https://liam0205.me/2017/02/05/pointer-in-C-and-Cpp/" target="_blank" rel="external">C 和 C++ 中的指针</a></li><li><a href="https://blog.csdn.net/soonfly/article/details/51131141" target="_blank" rel="external">让你不再害怕指针——C指针详解(经典,非常详细)</a></li><li><a href="https://www.cnblogs.com/alephsoul-alephsoul/archive/2012/10/10/2719192.html" target="_blank" rel="external">[C++基础]019_指针和引用（int<em>、int&amp;、int</em>&amp;、int&amp;<em>、int*</em>）</a></li><li><a href="https://www.zhihu.com/question/39518280" target="_blank" rel="external">请问 C 语言中 &amp; 和 * 的用法？</a></li><li><a href="http://www.360doc.com/content/11/0506/22/6903212_114913736.shtml" target="_blank" rel="external">http://www.360doc.com/content/11/0506/22/6903212_114913736.shtml</a></li><li><a href="https://blog.csdn.net/u013539441/article/details/39859741" target="_blank" rel="external">LinkList <em>L ， LinkList </em>&amp;L 和 LinkList &amp;*L 的区别</a></li><li><a href="https://blog.csdn.net/Tomstrong_369/article/details/54376231" target="_blank" rel="external">C语言指针详解</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;大一学的C语言，虽然自认为当时学的还不错，这几年也没咋用，有些小细节已经忘了。&lt;br&gt;下面参考已经写的挺不错了，我就总结一下自己要用的东西吧。&lt;/p&gt;
+&lt;h1 id=&quot;指针的一些疑惑&quot;&gt;&lt;a href=&quot;#指针的一些疑惑&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+    
+      <category term="C语言" scheme="http://aolish333.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="指针" scheme="http://aolish333.github.io/tags/%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
   
   <entry>
     <title>PAT A1001</title>
