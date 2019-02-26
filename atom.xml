@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2019-01-03T08:00:23.482Z</updated>
+  <updated>2019-01-08T03:59:49.044Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hadoop分布式集群搭建</title>
+    <link href="http://aolish333.github.io/2019/01/08/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    <id>http://aolish333.github.io/2019/01/08/hadoop分布式集群搭建/</id>
+    <published>2019-01-08T03:55:55.000Z</published>
+    <updated>2019-01-08T03:59:49.044Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前完成了hadoop伪分布式集群的安装，处于课设的需要，需要分布式集群。那么接下里就记录一些真分布式有用的东西吧。</p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前完成了hadoop伪分布式集群的安装，处于课设的需要，需要分布式集群。那么接下里就记录一些真分布式有用的东西吧。&lt;/p&gt;
+&lt;h2 id=
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>分布式平台搭建所遇到的问题</title>
