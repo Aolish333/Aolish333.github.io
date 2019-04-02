@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2019-03-24T13:10:58.588Z</updated>
+  <updated>2019-04-02T11:24:05.164Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://aolish333.github.io/2019/03/24/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
     <id>http://aolish333.github.io/2019/03/24/Java学习记录/</id>
     <published>2019-03-24T12:02:56.000Z</published>
-    <updated>2019-03-24T13:10:58.588Z</updated>
+    <updated>2019-04-02T11:24:05.164Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>大学快毕业了，学到的东西有的必须记录一下，以后可能会用到吧。</p><h1 id="Java学习的思考"><a href="#Java学习的思考" class="headerlink" title="Java学习的思考"></a>Java学习的思考</h1><h2 id="如何阅读源码"><a href="#如何阅读源码" class="headerlink" title="如何阅读源码"></a>如何阅读源码</h2><p>我整理了网上有价值的论坛和博客。</p><ul><li><p><a href="https://juejin.im/entry/5af274206fb9a07ac76ecc87" target="_blank" rel="external">阅读源码的四种境界</a></p></li><li><p><a href="https://www.codedump.info/post/20190324-how-to-read-code/" target="_blank" rel="external">如何阅读一份源代码？</a></p></li><li><a href="https://www.zhihu.com/question/19625320" target="_blank" rel="external">如何阅读程序源代码？</a></li></ul><h3 id="阅读总结"><a href="#阅读总结" class="headerlink" title="阅读总结"></a>阅读总结</h3><blockquote><ol><li>学习先修技术、准备源码；</li><li>查找相关资料了解所以学习源码的结构；</li><li>阅读源码善于用Debug功能；</li><li>写笔记、画图、总结。</li></ol></blockquote><h2 id="第一次如何阅读源码"><a href="#第一次如何阅读源码" class="headerlink" title="第一次如何阅读源码"></a>第一次如何阅读源码</h2><p>我的方法：</p><ol><li>了解IDEA的Debug功能；</li><li>阅读自己要看的代码（按照阅读总结里的）；</li><li>查找网上相关的博客与自己的阅读笔记进行对比</li><li>记录欠缺的地方。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>大学快毕业了，学到的东西有的必须记录一下，以后可能会用到吧。</p><h1 id="Java学习的思考"><a href="#Java学习的思考" class="headerlink" title="Java学习的思考"></a>Java学习的思考</h1><h2 id="如何阅读源码"><a href="#如何阅读源码" class="headerlink" title="如何阅读源码"></a>如何阅读源码</h2><p>我整理了网上有价值的论坛和博客。</p><ul><li><p><a href="https://juejin.im/entry/5af274206fb9a07ac76ecc87" target="_blank" rel="external">阅读源码的四种境界</a></p></li><li><p><a href="https://www.codedump.info/post/20190324-how-to-read-code/" target="_blank" rel="external">如何阅读一份源代码？</a></p></li><li><a href="https://www.zhihu.com/question/19625320" target="_blank" rel="external">如何阅读程序源代码？</a></li></ul><h3 id="阅读总结"><a href="#阅读总结" class="headerlink" title="阅读总结"></a>阅读总结</h3><blockquote><ol><li>学习先修技术、准备源码；</li><li>查找相关资料了解所以学习源码的结构；</li><li>阅读源码善于用Debug功能；</li><li>写笔记、画图、总结。</li></ol></blockquote><h2 id="第一次如何阅读源码"><a href="#第一次如何阅读源码" class="headerlink" title="第一次如何阅读源码"></a>第一次如何阅读源码</h2><p>我的方法：</p><ol><li>了解IDEA的Debug功能；</li><li>阅读自己要看的代码（按照阅读总结里的）；</li><li>查找网上相关的博客与自己的阅读笔记进行对比</li><li>记录欠缺的地方。</li></ol><h2 id="学习中是有些细节必须注意"><a href="#学习中是有些细节必须注意" class="headerlink" title="学习中是有些细节必须注意"></a>学习中是有些细节必须注意</h2><p>最近面试了几家公司，才发现自己有些基础问题都回答不上来，想想自己在平时的学习中，细节不到位。</p><h3 id="学习中细节总结"><a href="#学习中细节总结" class="headerlink" title="学习中细节总结"></a>学习中细节总结</h3><ol><li>经常使用的必须熟练，避免在工作中出现低级错误或者需要很长时间去查资料；</li><li>前期少用快捷键，避免在面试或者工作环境下忘记参数或方法名；</li><li>在白纸上或编辑器总结重点知识。</li></ol>]]></content>
     
     <summary type="html">
     
