@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aolish333.github.io/"/>
-  <updated>2019-04-02T11:24:05.164Z</updated>
+  <updated>2019-04-03T07:31:47.183Z</updated>
   <id>http://aolish333.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>静态与非静态代码块加载顺序</title>
+    <link href="http://aolish333.github.io/2019/04/02/%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%9D%97%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/"/>
+    <id>http://aolish333.github.io/2019/04/02/静态与非静态代码块加载顺序/</id>
+    <published>2019-04-02T11:49:09.000Z</published>
+    <updated>2019-04-03T07:31:47.183Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="静态与非静态-amp-继承-代码分析"><a href="#静态与非静态-amp-继承-代码分析" class="headerlink" title="静态与非静态 &amp; 继承 代码分析"></a>静态与非静态 &amp; 继承 代码分析</h1><h2 id="1-访问静态变量"><a href="#1-访问静态变量" class="headerlink" title="1. 访问静态变量"></a>1. 访问静态变量</h2><pre><code>public class StaticTest {    int var = 8;    static int svar = ret();    static { // 静态代码块        System.out.println(&quot;[静态代码块]：你说啥，你睁大眼睛看看我是谁&quot;);    }    static int ret() {        System.out.println(&quot;[静态方法]:下面是静态变量的int值&quot;);        return 3;    }    public static void main(String[] args) {        System.out.println(&quot;————直接访问静态代码————&quot;);        System.out.println(svar);    }}</code></pre><h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><pre><code>[静态方法]:下面是静态变量的int值[静态代码块]：你说啥，你睁大眼睛看看我是谁————直接访问静态代码————</code></pre><h3 id="执行先后顺序"><a href="#执行先后顺序" class="headerlink" title="执行先后顺序"></a>执行先后顺序</h3><ol><li>静态变量</li><li>静态代码化块</li></ol><h2 id="2-加入实例化后"><a href="#2-加入实例化后" class="headerlink" title="2. 加入实例化后"></a>2. 加入实例化后</h2><pre><code>public class StaticTest {    int var = 8;    static int svar = ret();    { // 构造方法块        System.out.println(&quot;构造方法块&quot;);    }    static { // 静态代码块        System.out.println(&quot;[静态代码块]：你说啥，你睁大眼睛看看我是谁&quot;);    }    static int ret() {        System.out.println(&quot;[静态方法]:下面是静态变量的int值&quot;);        return 3;    }    //普通方法    public StaticTest() {        System.out.println(&quot;[实例化]:看我的构造方法&quot;);    }    public void ordinaryMethon(){// 侠客        System.out.println(&quot;[接盘侠]:为国接盘&quot;);    }    public static void main(String[] args) {        System.out.println(&quot;————直接访问静态代码————&quot;);        System.out.println(svar);        System.out.println(&quot;————当[实例化]到家后————&quot;);        StaticTest sing = new StaticTest();        System.out.println(sing);        sing.ordinaryMethon();    }}</code></pre><h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><pre><code>[静态方法]:下面是静态变量的int值[静态代码块]：你说啥，你睁大眼睛看看我是谁————直接访问静态代码————3————当[实例化]到家后————[变量初始化]:我是用来初始化变量的构造方法块[实例化]:看我的构造方法StaticTest@4554617c[接盘侠]:为国接盘</code></pre><h3 id="执行先后顺序-1"><a href="#执行先后顺序-1" class="headerlink" title="执行先后顺序"></a>执行先后顺序</h3><ol><li>静态变量</li><li>静态代码块</li><li>变量</li><li>初始化块</li><li>构造方法</li><li>非静态方法</li></ol><h2 id="3-当静态测试类有儿子后"><a href="#3-当静态测试类有儿子后" class="headerlink" title="3. 当静态测试类有儿子后"></a>3. 当静态测试类有儿子后</h2><pre><code>public class StaticSon extends StaticTest {    public static void main(String[] args) {        System.out.println(&quot;-----儿子出生时了，不愧是被静态修饰，真像他爸------&quot;);    }}</code></pre><h3 id="结果-2"><a href="#结果-2" class="headerlink" title="结果"></a>结果</h3><pre><code>[静态方法]:下面是静态变量的int值[静态代码块]：你说啥，你睁大眼睛看看我是谁-----儿子出生时了，不愧是被静态修饰，真像他爸------</code></pre><h3 id="执行先后顺序-2"><a href="#执行先后顺序-2" class="headerlink" title="执行先后顺序"></a>执行先后顺序</h3><ol><li>父类静态变量</li><li>父类静态方法块</li></ol><h2 id="4-儿子长得有点不像他爹时"><a href="#4-儿子长得有点不像他爹时" class="headerlink" title="4. 儿子长得有点不像他爹时"></a>4. 儿子长得有点不像他爹时</h2><p>注释：[儿子][重写]都是在子类中实现</p><pre><code>public class StaticSon extends StaticTest {    int var = retVar();    static int svar = ret();    { // 构造方法块        System.out.println(&quot;[儿子]:我的构造方法块&quot;);    }    static { // 静态代码块        System.out.println(&quot;{重写}[静态代码块]：你说啥，你睁大眼睛看看我是谁&quot;);    }    private int retVar(){        System.out.println(&quot;{重写}[变量初始化]:我是用来初始化变量的&quot;);        return 1222;    }    // 用于初始化静态变量的值    static int ret() {        System.out.println(&quot;{重写}[父类静态方法]:下面是静态变量的int值&quot;);        return 22222;    }    public StaticSon() {        System.out.println(&quot;[儿子][实例化]:看我的构造方法&quot;);    }    public static void main(String[] args) {        System.out.println(&quot;-----儿子出生了，不愧是被静态修饰，真像他爸------&quot;);        StaticSon son = new StaticSon();    }}</code></pre><h3 id="结果-3"><a href="#结果-3" class="headerlink" title="结果"></a>结果</h3><pre><code>[静态方法]:下面是静态变量的int值[静态代码块]：你说啥，你睁大眼睛看看我是谁{重写}[父类静态方法]:下面是静态变量的int值{重写}[静态代码块]：你说啥，你睁大眼睛看看我是谁-----儿子出生了，不愧是被静态修饰，真像他爸------[变量初始化]:我是用来初始化变量的构造方法块[实例化]:看我的构造方法{重写}[变量初始化]:我是用来初始化变量的[儿子]:我的构造方法块[儿子][实例化]:看我的构造方法</code></pre><h3 id="执行先后顺序-3"><a href="#执行先后顺序-3" class="headerlink" title="执行先后顺序"></a>执行先后顺序</h3><ol><li>父类：静态变量</li><li>父类：静态代码块</li><li>子类：静态变量</li><li>子类：静态代码块</li><li>父类：变量</li><li>父类：初始化块</li><li>父类：构造函数</li><li>子类：变量</li><li>子类：初始化块</li><li>子类：构造函数</li></ol><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol><li><a href="https://www.cnblogs.com/Qian123/p/5713440.html" target="_blank" rel="external">Java提高篇——静态代码块、构造代码块、构造函数以及Java类初始化顺序</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;静态与非静态-amp-继承-代码分析&quot;&gt;&lt;a href=&quot;#静态与非静态-amp-继承-代码分析&quot; class=&quot;headerlink&quot; title=&quot;静态与非静态 &amp;amp; 继承 代码分析&quot;&gt;&lt;/a&gt;静态与非静态 &amp;amp; 继承 代码分析&lt;/h1&gt;&lt;h2 i
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://aolish333.github.io/tags/java/"/>
+    
+      <category term="面试" scheme="http://aolish333.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>学习记录总结</title>
@@ -92,7 +117,7 @@
     <link href="http://aolish333.github.io/2019/01/03/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://aolish333.github.io/2019/01/03/分布式平台搭建所遇到的问题/</id>
     <published>2019-01-03T07:41:27.000Z</published>
-    <updated>2019-01-03T08:00:23.482Z</updated>
+    <updated>2019-04-03T07:32:57.966Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在搭建分布式平台时，一开始按照网上的教程但是配置centos的网卡但是一直报<code>job for network.service failed because the control process exited with error code</code>的错误，后来修改了好多次虽然网卡配置好了，但还是ping 不到外网。最后在安装centos前验证centos是否完好时，发下真正的错是下面的问题。</p><p><code>Determining IP Information for eth0/3</code> 的问题，查询得知这是，linux网卡驱动与vmware之间的bug,由于自己用vaware12版本。得出的解决方法如下</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol><li><a href="https://blog.csdn.net/gengkunpeng/article/details/46495631" target="_blank" rel="external">Determining IP Information for eth0</a></li><li>升级vmware版本。注释：我是升级到15版本。</li></ol><h2 id="思考：为啥自己改bug的效率如此的低？"><a href="#思考：为啥自己改bug的效率如此的低？" class="headerlink" title="思考：为啥自己改bug的效率如此的低？"></a>思考：为啥自己改bug的效率如此的低？</h2><ol><li>找不到真正出错的地方。</li><li>学习新东西没有先把原理搞清楚，只是一直在试探。</li><li>太浮躁。</li></ol>]]></content>
     
@@ -106,7 +131,7 @@
     </summary>
     
     
-      <category term="bug" scheme="http://aolish333.github.io/tags/bug/"/>
+      <category term="Bug集" scheme="http://aolish333.github.io/tags/Bug%E9%9B%86/"/>
     
   </entry>
   
@@ -189,7 +214,7 @@
     <link href="http://aolish333.github.io/2018/01/23/%E7%BE%8E%E8%B5%9B%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/"/>
     <id>http://aolish333.github.io/2018/01/23/美赛模板总结/</id>
     <published>2018-01-23T09:41:15.000Z</published>
-    <updated>2018-02-07T08:47:47.609Z</updated>
+    <updated>2019-04-03T07:32:14.071Z</updated>
     
     <content type="html"><![CDATA[<p>只介绍使用频率比较高的功能。本文不是基础教程而是总结在数学建模比赛中使用频率较高的一个操作。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>\section 一级标题<br>\subsection 二级标题<br>\subsubsection 三级标题</p><h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><pre><code>\begin{enumerate}    \item[1)] A nest item.    \item[2)] A nest item.</code></pre><p>\end{enumerate}</p><h2 id="无须列表"><a href="#无须列表" class="headerlink" title="无须列表"></a>无须列表</h2><pre><code>\begin{itemize}     \item An item.     \begin{itemize}         \item A nested item.         \item[+] A ‘plus’ item.         \item Another item.     \end{itemize}     \item Go back to upper level. \end{itemize}</code></pre><h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p>分段符号 <code>\par</code></p><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><p>在需要引用的时候,<code>\label{}</code> 和 <code>\ref{}</code> 是成对出现的。前者是标签，后者是引用，大括号内的内容相同。</p><h2 id="文献引用的的上标"><a href="#文献引用的的上标" class="headerlink" title="文献引用的的上标"></a>文献引用的的上标</h2><p>在<code>\begin{document}</code>之前加上</p><pre><code>`\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}`。</code></pre><p>显示引用上标的参考文献时用<code>\upcite()</code>。</p><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>对于制图可用excel、matlab、R、python、PPT和Latex–TikZ&amp;PGF等软件。但对于复杂的图形，一般采用PPT或者coding类型的软件。</p><h3 id="并排放置两张图"><a href="#并排放置两张图" class="headerlink" title="并排放置两张图"></a>并排放置两张图</h3><p>引入包：<br>\usepackage{caption} % 图片<br>\usepackage{subfigure} % 图片<br>代码:</p><pre><code>\begin{figure}[htbp]    \centering        %居中    \subfigure[name of the subfigure]{      %第一张子图        \begin{minipage}{7cm}            \centering                   %子图居中            \includegraphics[scale=0.4]{one_3.jpg}          %以pic.jpg的0.4倍大小输出        \end{minipage}}    \subfigure[name of the subfigure]{          %第二张子图        \begin{minipage}{7cm}            \centering                                                          %子图居中            \includegraphics[scale=0.4]{one_3.jpg}         %以pic.jpg的0.5倍大小输出        \end{minipage}}    \caption{name of the figure} %          %大图名称    \label{fig:1}      %图片引用标记\end{figure}</code></pre><h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol><li><a href="https://www.zhihu.com/question/41322252" target="_blank" rel="external">LaTeX 如何让两张图并排显示？</a></li><li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100gdqy.html" target="_blank" rel="external">LaTeX技巧151：subfigure排版并排放置两图</a></li><li><a href="http://zqdevres.qiniucdn.com/data/20141217174706/index.html" target="_blank" rel="external">如何在论文中画出漂亮的插图？</a></li><li><a href="http://www.cnblogs.com/tsingke/p/6649800.html" target="_blank" rel="external">Latex–TikZ和PGF–高级文本绘图，思维绘图，想到–得到！</a></li></ol><h2 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h2><p>导入的表格一般是三段式。代码如下</p><pre><code>% 引入的宏包%\usepackage{booktabs} % 表格%\usepackage{makecell} % 表格线段的粗细\begin{table}[htbp]\centering\caption{\label{tab:Symbols}Symbols and Definitions}\begin{tabular}{c c}    \Xhline{1.2pt}    Symbol  &amp; Deﬁnition  \\    \midrule    i &amp;  the ith dam in a series of small dams \\    i &amp;  the ith dam in a series of small dams \\    i &amp;  the ith dam in a series of small dams \\    \Xhline{1.2pt}\end{tabular}</code></pre><p>\end{table}</p><p>\begin{table}[htbp] 可以设置图片放放在的位置。</p><p>如：<code>\begin{table}[p]</code> 是将图片单独放在一页。<code>\begin{table}[H]</code> 是在当前位置。</p><p>同样 [t] [b] 分别代表位于页面的顶端或低端。</p><h2 id="表格过长的处理方式"><a href="#表格过长的处理方式" class="headerlink" title="表格过长的处理方式"></a>表格过长的处理方式</h2><p>一般方法有：</p><ul><li>旋转表格；</li><li>缩放表格；</li><li>设置单元格宽度，自动换行。</li></ul><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol><li><a href="http://blog.163.com/heyanqiner@126/blog/static/173423558201152454357190/" target="_blank" rel="external">表格过长的处理方式</a></li><li><a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=152527" target="_blank" rel="external">表格太大 怎么成倍缩小 适应页面宽度 </a></li></ol><h3 id="导入表格的第三方插件"><a href="#导入表格的第三方插件" class="headerlink" title="导入表格的第三方插件"></a>导入表格的第三方插件</h3><p>写数学建模的论文，有时候需要导入表格，自己新建表格太累。一般是导入表格之后再就行调试。<br><a href="https://ctan.org/tex-archive/support/excel2latex/" target="_blank" rel="external">Excel2LaTeX.xla 下载链接</a><br>下载完后，加入Excel加载项，如下图所示<br><img src="https://i.imgur.com/EBmw4Zg.png" alt=""></p><h2 id="插入公式"><a href="#插入公式" class="headerlink" title="插入公式"></a>插入公式</h2><p>基本公式的使用可以参考你所使用的编译器的导航栏，以便了解公式的基本使用。或者你可以参考下面的参考文献 1。</p><h3 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h3><pre><code>\times 乘号</code></pre><h2 id="插入文献"><a href="#插入文献" class="headerlink" title="插入文献"></a>插入文献</h2><p>引入多个参考文献</p><pre><code>\usepackage[numbers,sort&amp;compress]{natbib} % 引入多个参考文献\cite{bibtex1，bibtex2，bibtex3} % 引入</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>引入文件对于latex 来说有许多快捷方式。对于文件的管理可参考文献 2 知乎的回答。</p><ol><li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100fs38.html" target="_blank" rel="external">LaTeX技巧10：LaTeX数学公式输入初级入门</a></li><li><a href="https://www.zhihu.com/question/23565739" target="_blank" rel="external">如何在LaTeX写作中管理参考文献?</a></li><li><a href="http://blog.sina.com.cn/s/blog_5e16f1770100fw68.html" target="_blank" rel="external">LaTeX技巧23:BIBTeX制作参考文献</a></li></ol><h1 id="分文件进行编写"><a href="#分文件进行编写" class="headerlink" title="分文件进行编写"></a>分文件进行编写</h1><p>在书写论文时，为了使编译的文章便于调试往往需要分文件进行书写。</p><p>\input{} 导入到主文件里不分页。<br>\include{} 导入主文件新起一页，只能用在正文里<br>{}里只写文件名不屑后缀。</p><p>在 mcmthesis 中建议附录用\include{},其他用\input{}</p><h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ol><li><a href="http://blog.csdn.net/yanxiangtianji/article/details/13169699" target="_blank" rel="external">latex分文件编写技巧</a></li></ol><h2 id="插入代码"><a href="#插入代码" class="headerlink" title="插入代码"></a>插入代码</h2><h1 id="Tex-studio-常用快捷键"><a href="#Tex-studio-常用快捷键" class="headerlink" title="Tex studio 常用快捷键"></a>Tex studio 常用快捷键</h1><pre><code>crt+T 注释与取消注释crt+E 环境crt+k 删除整行</code></pre>]]></content>
     
@@ -204,11 +229,11 @@
     </summary>
     
     
+      <category term="LaTex" scheme="http://aolish333.github.io/tags/LaTex/"/>
+    
       <category term="数学建模" scheme="http://aolish333.github.io/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
     
       <category term="美赛" scheme="http://aolish333.github.io/tags/%E7%BE%8E%E8%B5%9B/"/>
-    
-      <category term="Latex" scheme="http://aolish333.github.io/tags/Latex/"/>
     
   </entry>
   
